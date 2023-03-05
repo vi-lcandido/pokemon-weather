@@ -13,12 +13,12 @@ export const searchPokemonFromCity = async (cityName) => {
 
     let { responsePokemonType, responsePokemonName } =
       await getPokemonFromWeather(resultWeather.weather[0].main, tempCelcius);
-
+console.log(responsePokemonName.charAt(0).toUpperCase() + responsePokemonType.substring(1));
     return {
       dataClima: resultWeather,
       temp: tempCelcius,
-      responsePokemonType: responsePokemonType,
-      responsePokemonName: responsePokemonName,
+      responsePokemonType: responsePokemonType.charAt(0).toUpperCase() + responsePokemonType.substring(1),
+      responsePokemonName: responsePokemonName.charAt(0).toUpperCase() + responsePokemonType.substring(1),
       error: "",
     };
   } catch (error) {
