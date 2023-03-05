@@ -26,7 +26,6 @@ export const searchPokemonFromCity = async (cityName) => {
       error: "",
     };
   } catch (error) {
-    
     return {
       dataClima: {},
       temp: "",
