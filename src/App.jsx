@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+// import {searchPokemonFromCity, searchPokemon} from "./services/respository"
+
 // import './App.css'
 
 function App() {
@@ -14,15 +15,15 @@ function App() {
 
   const urlPokemon = "https://pokeapi.co/api/v2/type/";
 
+
+
   const searchCity = async (event) => {
     if (event.key === "Enter") {
       let response = await axios.get(urlWeather);
       let resultWeather = response.data;
       setDataWeather(resultWeather);
-      // console.log(resultWeather);
-      // console.log(dataWeather);
       let tempCelcius = celsiusTemp(resultWeather);
-      console.log(tempCelcius);
+      // console.log(tempCelcius);
       if (resultWeather.weather[0].main === "Rain") {
         console.log(await searchPokemon("electric"));
       } else if (tempCelcius < 5) {
@@ -50,14 +51,32 @@ function App() {
     let resultPokemon = response.data;
 
     const randomPokemon = Math.floor(
-      Math.random() * resultPokemon.pokemon.length
+      Math.random() * (resultPokemon.pokemon.length - 1)
     );
     setPokemonType(pokemonType);
     setPokemonName(resultPokemon.pokemon[randomPokemon].pokemon.name);
+    let resultPokemonList = resultPokemon.pokemon;
 
-    return resultPokemon.pokemon[randomPokemon].pokemon.name;
+    if (
+      localStorage.getItem("nome") ===
+      resultPokemonList[randomPokemon].pokemon.name
+    ) {
+      if (randomPokemon == resultPokemonList.length - 1) {
+        localStorage.setItem(
+          "nome",
+          resultPokemonList[randomPokemon - 1].pokemon.name
+        );
+      } else {
+        localStorage.setItem(
+          "nome",
+          resultPokemonList[randomPokemon + 1].pokemon.name
+        );
+      }
+    }
+
+    return resultPokemonList[randomPokemon].pokemon.name;
   };
-  //  setPokemonType(searchPokemon("fire"))
+
   const celsiusTemp = (weather) => {
     let tempCelcius = Math.round(parseFloat(weather.main.temp) - 273.15);
 
