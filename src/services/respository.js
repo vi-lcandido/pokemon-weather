@@ -18,7 +18,7 @@ console.log(responsePokemonName.charAt(0).toUpperCase() + responsePokemonType.su
       dataClima: resultWeather,
       temp: tempCelcius,
       responsePokemonType: responsePokemonType.charAt(0).toUpperCase() + responsePokemonType.substring(1),
-      responsePokemonName: responsePokemonName.charAt(0).toUpperCase() + responsePokemonType.substring(1),
+      responsePokemonName: responsePokemonName.charAt(0).toUpperCase() + responsePokemonName.substring(1),
       error: "",
     };
   } catch (error) {
