@@ -14,14 +14,15 @@ export function WeatherPokemon() {
 
   const handleSearchSubmit = async (event) => {
     if (event.key === "Enter") {
-      let { dataClima, temp, tipoPokemon, nomePokemon, error } =
+      let { dataClima, temp, responsePokemonType, responsePokemonName, error } =
         await searchPokemonFromCity(event.target.value);
+
       if (error === "") {
         setTemp(temp);
         setDataWeather(dataClima);
-        setPokemonType(tipoPokemon);
-        setPokemonName(nomePokemon);
-        setError(error)
+        setPokemonType(responsePokemonType);
+        setPokemonName(responsePokemonName);
+        setError(error);
       } else {
         setError(error);
       }
