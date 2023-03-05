@@ -2,6 +2,8 @@ import { useState } from "react";
 import { searchPokemonFromCity } from "../services/respository";
 import { Pokemon } from "./components/pokemon";
 import { Weather } from "./components/weather";
+import { ErrorComponent } from "./components/error-component";
+import { Input } from "./components/input";
 
 export function WeatherPokemon() {
   const [error, setError] = useState("");
@@ -19,6 +21,7 @@ export function WeatherPokemon() {
         setDataWeather(dataClima);
         setPokemonType(tipoPokemon);
         setPokemonName(nomePokemon);
+        setError(error)
       } else {
         setError(error);
       }
@@ -27,21 +30,30 @@ export function WeatherPokemon() {
 
   return (
     <div className="container">
-      <Weather
-        handleSearchSubmit={handleSearchSubmit}
-        name={
-          JSON.stringify(dataWeather) === "{}" ? "Cidade" : dataWeather.name
-        }
-        weather={
-          JSON.stringify(dataWeather) === "{}"
-            ? "Tempo"
-            : dataWeather.weather[0].main
-        }
-        temp={
-          JSON.stringify(dataWeather) === "{}" ? "Temperatura" : `${temp} ºC`
-        }
-      />
-      <Pokemon pokemonType={pokemonType} pokemonName={pokemonName} />
+      <Input handleSearchSubmit={handleSearchSubmit} />
+      {error === "" ? (
+        <div className="weather-pokemon-container">
+          <Weather
+            handleSearchSubmit={handleSearchSubmit}
+            name={
+              JSON.stringify(dataWeather) === "{}" ? "Cidade" : dataWeather.name
+            }
+            weather={
+              JSON.stringify(dataWeather) === "{}"
+                ? "Tempo"
+                : dataWeather.weather[0].main
+            }
+            temp={
+              JSON.stringify(dataWeather) === "{}"
+                ? "Temperatura"
+                : `${temp} ºC`
+            }
+          />
+          <Pokemon pokemonType={pokemonType} pokemonName={pokemonName} />
+        </div>
+      ) : (
+        <ErrorComponent text={error} />
+      )}
     </div>
   );
 }

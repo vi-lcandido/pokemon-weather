@@ -1,13 +1,6 @@
 export function Weather(props) {
   return (
     <div>
-      <div className="search">
-        <input
-          placeholder="Digite uma cidade"
-          onKeyDown={props.handleSearchSubmit}
-          type="text"
-        ></input>
-      </div>
       <div className="inside-container">
         <h1>Clima</h1>
         <h3>{props.name}</h3>

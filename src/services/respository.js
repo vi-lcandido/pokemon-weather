@@ -6,12 +6,7 @@ export const searchPokemonFromCity = async (cityName) => {
     let response = await axios.get(urlWeather, {
       params: { q: cityName, appid: key },
     });
-    if (response.data.cod === "404") {
-      throw new Error("Cidade não encontrada");
-    }
-    if (response.data.cod === "400") {
-      throw new Error("Falha na requisição");
-    }
+    
     if (response.data.cod === 200) {
       let resultWeather = response.data;
 
@@ -45,12 +40,13 @@ export const searchPokemonFromCity = async (cityName) => {
       };
     }
   } catch (error) {
+    console.log(error.message);
     return {
       dataClima: {},
       temp: "",
       tipoPokemon: "",
       nomePokemon: "",
-      error: error.message,
+      error: "Aconteceu um erro, tente novamente",
     };
   }
 };
