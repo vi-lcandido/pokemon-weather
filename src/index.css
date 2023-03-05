@@ -28,14 +28,25 @@ body {
 }
 
 input {
-  height: 35px;
-  width: 13rem;
+  /* height: 35px;
+  width: 13rem; */
   border-radius: 15px;
-  padding: 0.4rem;
-  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.4rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fafafa;
 }
 
+::placeholder {
+  color: rgba(248, 248, 248, 0.695);
+}
+
+/* .app .search{
+  text-align: center;
+  border: 1px solid purple;
+  padding: 1rem;
+} */
 .inside-container {
   border: 1px solid #fafafa;
   border-radius: 12px;
