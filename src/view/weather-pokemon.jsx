@@ -6,6 +6,7 @@ import { ErrorComponent } from "./components/error-component";
 import { Input } from "./components/input";
 
 export function WeatherPokemon() {
+  //setando estados para alteração das informações de requisição ou utulizição dos componentes
   const [error, setError] = useState("");
   const [dataWeather, setDataWeather] = useState({});
   const [pokemonType, setPokemonType] = useState("");
@@ -13,10 +14,11 @@ export function WeatherPokemon() {
   const [temp, setTemp] = useState("");
 
   const handleSearchSubmit = async (event) => {
+    // requisicao da API Open Weather ao pressionar o enter
     if (event.key === "Enter") {
       let { dataClima, temp, responsePokemonType, responsePokemonName, error } =
         await searchPokemonFromCity(event.target.value);
-
+        //não dando erro na requisição da weather usa as funcoes de set do useState para passar os atributos do respository
       if (error === "") {
         setTemp(temp);
         setDataWeather(dataClima);
